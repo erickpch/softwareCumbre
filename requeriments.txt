@@ -2,3 +2,4 @@ pip install
 ---------------------------------
 install --upgrade pip
 psycong2-binary
+djangorestframework

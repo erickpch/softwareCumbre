@@ -1,2 +1,4 @@
+
+///migrar base de datos
 python manage.py makemigrations
 python manage.py migrate
