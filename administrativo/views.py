@@ -66,12 +66,7 @@ def iagemini(request):
     genai.configure(api_key=API_KEY)
     model = genai.GenerativeModel(
         model_name="gemini-2.5-flash"    
-    )
-
-    contexto = "tomando en cuenta los datos que te paso a continuacion arma un horario de estudio en formato json con estos atributos" \
-    "hora de inicio, hora final, tiempo de estudio, materia, dia de la semana, temas a estudiar de tal manera que sea " \
-    "saludable el estudio, tiempo optimo no necesitas tomar todos los horario, basate en la dificultad, tiempos libres para " \
-    "mejorar el apredizaje: "
+    ) 
 
     dias_disponibles   = request.data.get("dias_disponibles", "")
     horario_disponible = request.data.get("horario_disponible", "")
@@ -80,8 +75,10 @@ def iagemini(request):
     dias               = request.data.get("dias", "")
 
     prompt = f"""
-    Eres un asistente experto en educación. Usa la siguiente información del estudiante:
-    {contexto}
+    tomando en cuenta los datos que te paso a continuacion arma un horario de estudio en formato json con estos atributos" \
+    "hora de inicio, hora final, tiempo de estudio, materia, dia de la semana, temas a estudiar de tal manera que sea " \
+    "saludable el estudio, tiempo optimo no necesitas tomar todos los horario, basate en la dificultad, tiempos libres para " \
+    "mejorar el apredizaje: 
 
     - Días disponibles: {dias_disponibles}
     - Horario disponible: {horario_disponible}
