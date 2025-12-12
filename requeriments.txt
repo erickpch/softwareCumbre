@@ -4,3 +4,4 @@ install --upgrade pip
 psycong2-binary
 djangorestframework
 google-generativeai
+django-cors-headers
