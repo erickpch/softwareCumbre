@@ -37,10 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'rest_framework',
-    "corsheaders",
-    "google.generativeai",
-    "administrativo"
+    'rest_framework', ##agregado para facilitador de getter y setters
+    "corsheaders",  ## agregado para cors
+    "google.generativeai", # agreegado para ia de google
+    "administrativo" ## app creada 
 ]
 
 MIDDLEWARE = [
@@ -131,7 +131,7 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-#agregado para cors
+#agregado para cors/////////////////////
 ALLOWED_HOSTS = ["localhost", "http://localhost:8081"]
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = False  
