@@ -23,4 +23,6 @@ urlpatterns = [
     path('ia', views.iagemini),
     path('iadb', views.iadb),
 
+    path('pais', views.traerPais)
+
 ]

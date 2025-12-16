@@ -9,7 +9,7 @@ from .models import Rol,User
 from .serializers import RolSerializer, UserSerializer
 
 import google.generativeai as genai
-
+import requests #para api externa
 
 class RolViewSet(viewsets.ModelViewSet):
     queryset = Rol.objects.all()
@@ -112,4 +112,43 @@ def iadb(request):
 
     response = model.generate_content(contexto + prompt)
     return Response(response.text)
+
+
+@api_view(['GET'])
+def traerPais(request):
+    url = "https://restcountries.com/v3.1/name/deutschland"
+    respuesta = requests.get(url)
+
+    datos = respuesta.json()
+    lista = []
+
+    for dato in datos:
+        pais = {
+            "nombre": dato.get("name", {}).get("common"),
+
+            # languages es un dict: {"deu": "German"}
+            "lenguaje": list(dato.get("languages", {}).values()),
+
+            # currencies es un dict: {"EUR": {"name": "Euro", "symbol": "€"}}
+            "moneda": [
+                moneda.get("name")
+                for moneda in dato.get("currencies", {}).values()
+            ],
+
+            # capital viene como lista
+            "capital": dato.get("capital", [None])[0],
+
+            "google_maps": dato.get("maps", {}).get("googleMaps"),
+
+            # latlng: [lat, lng]
+            "latitud": dato.get("latlng", [None, None])[0],
+            "longitud": dato.get("latlng", [None, None])[1],
+
+            "codigo_postal": dato.get("postalCode", {}).get("format")
+        }
+
+        lista.append(pais)
+        
+
+    return Response(lista)
 
