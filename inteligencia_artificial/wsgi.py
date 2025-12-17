@@ -1,5 +1,5 @@
 """
-WSGI config for inteligencia_artificial project.
+WSGI config for tiendita project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "inteligencia_artificial.settings")
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tiendita.settings')
 
 application = get_wsgi_application()

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework', ##agregado para facilitador de getter y setters
     "corsheaders",  ## agregado para cors
     "google.generativeai", # agreegado para ia de google
+    "channels", ##agregado para socket en django
     "administrativo" ## app creada 
 ]
 
@@ -136,3 +137,13 @@ ALLOWED_HOSTS = ["*"]
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = False  
 CORS_ALLOWED_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+
+
+
+##agregado para sockets
+ASGI_APPLICATION = "inteligencia_artificial.asgi.application"
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    },
+}

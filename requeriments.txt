@@ -3,6 +3,9 @@ pip install
 install --upgrade pip
 psycong2-binary
 djangorestframework
-google-generativeai
+google-generativeai ----> para ia
 django-cors-headers
-requests
+requests  ------>para api externa
+
+channels channels-redis ---->para sockets
+daphne ---->para sockets

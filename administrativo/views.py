@@ -11,6 +11,10 @@ from .serializers import RolSerializer, UserSerializer
 import google.generativeai as genai
 import requests #para api externa
 
+
+from channels.layers import get_channel_layer ##agregado para socket
+from asgiref.sync import async_to_sync##agregado para socket
+
 class RolViewSet(viewsets.ModelViewSet):
     queryset = Rol.objects.all()
     serializer_class = RolSerializer
@@ -26,11 +30,31 @@ def hola_mundo(request):
         "nombre" : "erick",
         "profesion" : "docente"
     }
+    #AGREGADO COMO EVENTO EN WEBSOCKET
+    channel_layer = get_channel_layer()
+    async_to_sync(channel_layer.group_send)(
+        "usuario",{
+            "type" : "enviar",
+            "mensaje": "enviado"
+        }
+    )
+
+
     return Response(respuesta)
 
 @api_view(['POST']) # post recibe parametro y devuelve informacion o realiza una accion
 def hola_especifico(request):  
     nombre = request.data.get("nombre")
+
+    #AGREGADO COMO EVENTO EN WEBSOCKET
+    channel_layer = get_channel_layer()
+    async_to_sync(channel_layer.group_send)(
+        "usuario",{
+            "type" : "enviar",
+            "mensaje": nombre
+        }
+    )
+
     return Response({
         "respuesta" : f"hola {nombre} como estas"
     })

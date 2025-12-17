@@ -5,3 +5,8 @@ python manage.py migrate
 
 //correr servidor
 python manage.py runserver 0.0.0.0:8000
+
+
+
+//SOLO para ejecutar el servidor CON sockets
+daphne -p 8000 nombre.asgi:application
